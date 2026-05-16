@@ -149,6 +149,9 @@ function renderSkeletons(count) {
 
 function renderRepoCard(repo) {
     const langColor = LANG_COLORS[repo.language] || "#8b949e";
+    const langBar = repo.language
+        ? `<div class="card-lang-bar" style="background:${langColor}"></div>`
+        : "";
     const lang = repo.language
         ? `<span><span class="lang-dot" style="background:${langColor}"></span>${escapeHtml(repo.language)}</span>`
         : "";
@@ -158,6 +161,7 @@ function renderRepoCard(repo) {
 
     return `
         <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noopener">
+            ${langBar}
             <div class="repo-card-header">
                 ${repoIcon()}
                 <span class="repo-card-name">${escapeHtml(repo.name)}</span>
