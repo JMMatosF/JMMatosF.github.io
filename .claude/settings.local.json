@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(git -C /mnt/c/Users/User/Desktop/JMMatosF.github.io status)",
-      "Bash(git -C /mnt/c/Users/User/Desktop/JMMatosF.github.io diff)",
-      "Bash(git *)"
-    ]
-  }
-}
