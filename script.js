@@ -1,19 +1,37 @@
 // ============================================
-//  CONFIGURAÇÃO — edita estes valores
+//  CONFIGURATION — edit these values
 // ============================================
 const GITHUB_USERNAME = "JMMatosF";
 
-// Lista dos repositórios em destaque (apenas o nome do repo).
-// Para alterar quais aparecem na landing page, edita esta lista.
-// Cada entrada pode ser:
-//   - uma string (nome do repo público — dados puxados da API)
-//   - um objeto manual para repos privados ou de terceiros:
+// List of featured repositories (just the repo name).
+// To change which ones appear on the landing page, edit this list.
+// Each entry can be:
+//   - a string (public repo name — data pulled from the API)
+//   - a manual object for private or third-party repos:
 //     { name, description, language, html_url, stargazers_count?, forks_count? }
 const FEATURED_REPOS = [
+    {
+        name: "RH",
+        description: "Operational HR management web app (PWA) for a hospitality operation — cleaning, maintenance, activities, reception and admin. Django, PostgreSQL, 71 passing tests.",
+        language: "Python",
+        html_url: "https://github.com/JMMatosF/RH",
+        stargazers_count: 0,
+        forks_count: 0,
+        private: true,
+    },
     "ecommerce-store",
     {
+        name: "Agenda-Online",
+        description: "Shared occupancy schedule for rental houses — day and timeline views, individual logins and an activity log. Installable React (Vite) PWA + Node/Express/SQLite, deployable to Fly.io.",
+        language: "JavaScript",
+        html_url: "https://github.com/JMMatosF/Agenda-Online",
+        stargazers_count: 0,
+        forks_count: 0,
+        private: true,
+    },
+    {
         name: "PictuRAS",
-        description: "Plataforma web de processamento de imagem em microsserviços (React, Express, RabbitMQ, MinIO, Docker, Nginx). Projeto de equipa do 1º ano de Mestrado.",
+        description: "Microservices web platform for image processing (React, Express, RabbitMQ, MinIO, Docker, Nginx). First-year Master's team project.",
         language: "TypeScript",
         html_url: "https://github.com/Kard9876/RAS",
         stargazers_count: 1,
@@ -22,7 +40,7 @@ const FEATURED_REPOS = [
     },
     {
         name: "catalog-builder",
-        description: "Builder de catálogos de produtos com exportação para PDF — React, Express e Vite.",
+        description: "Product catalogue builder with PDF export — React, Express and Vite.",
         language: "JavaScript",
         html_url: "https://github.com/JMMatosF/catalog-builder",
         stargazers_count: 0,
@@ -31,7 +49,7 @@ const FEATURED_REPOS = [
     },
     {
         name: "RNG-Project",
-        description: "Sistema de irrigação inteligente com arquitetura Edge/Fog/Cloud — Arduino, MQTT, FastAPI, InfluxDB e Grafana.",
+        description: "Smart irrigation system with an Edge/Fog/Cloud architecture — Arduino, MQTT, FastAPI, InfluxDB and Grafana.",
         language: "Python",
         html_url: "https://github.com/JMMatosF/RNG-Project",
         stargazers_count: 0,
@@ -40,7 +58,7 @@ const FEATURED_REPOS = [
     },
     {
         name: "Ponto-de-Monitores",
-        description: "Sistema interno de gestão de pagamentos a monitores — Flask, SQLite, autenticação e exportação de relatórios.",
+        description: "Internal payment management system for activity instructors — Flask, SQLite, authentication and report export.",
         language: "Python",
         html_url: "https://github.com/JMMatosF/Ponto-de-Monitores",
         stargazers_count: 0,
@@ -49,7 +67,7 @@ const FEATURED_REPOS = [
     },
     {
         name: "RDS_2526",
-        description: "Encadeamento dinâmico de funções de serviço (SFC) com P4, Mininet e P4Runtime. UC de Redes Definidas por Software.",
+        description: "Dynamic Service Function Chaining (SFC) with P4, Mininet and P4Runtime. Software-Defined Networking course.",
         language: "Python",
         html_url: "https://github.com/joao4zinho/RDS_2526",
         stargazers_count: 0,
@@ -58,7 +76,7 @@ const FEATURED_REPOS = [
     },
     {
         name: "NPR_TP2526",
-        description: "Simulação de mobilidade urbana com Eclipse MOSAIC. Projeto de Redes de Próxima Geração.",
+        description: "Urban mobility simulation with Eclipse MOSAIC. Next-Generation Networks project.",
         language: "Java",
         html_url: "https://github.com/joao4zinho/NPR_TP2526",
         stargazers_count: 0,
@@ -66,8 +84,17 @@ const FEATURED_REPOS = [
         private: true,
     },
     {
+        name: "TP",
+        description: "A small programming language built from scratch — lexer/parser (parsy), evaluator, optimizer and mutation testing. Software Engineering Methods coursework.",
+        language: "Python",
+        html_url: "https://github.com/JMMatosF/TP",
+        stargazers_count: 0,
+        forks_count: 0,
+        private: true,
+    },
+    {
         name: "StockUpdate",
-        description: "Sistema interno de atualização de stock — comunicação entre o CMS e o software de faturação via API.",
+        description: "Internal stock synchronisation system — bridges the CMS and the invoicing software via API.",
         language: "Python",
         html_url: "https://github.com/JMMatosF/StockUpdate",
         stargazers_count: 0,
@@ -76,7 +103,7 @@ const FEATURED_REPOS = [
     },
 ];
 
-// Cores das linguagens (subset do GitHub linguist)
+// Language colours (subset of GitHub linguist)
 const LANG_COLORS = {
     JavaScript: "#f1e05a",
     TypeScript: "#3178c6",
@@ -157,7 +184,7 @@ function renderRepoCard(repo) {
         : "";
     const stars = repo.stargazers_count > 0 ? `<span>${starIcon()}${repo.stargazers_count}</span>` : "";
     const forks = repo.forks_count > 0 ? `<span>${forkIcon()}${repo.forks_count}</span>` : "";
-    const privateBadge = repo.private ? `<span class="badge-private">Privado</span>` : "";
+    const privateBadge = repo.private ? `<span class="badge-private">Private</span>` : "";
 
     return `
         <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noopener">
@@ -167,7 +194,7 @@ function renderRepoCard(repo) {
                 <span class="repo-card-name">${escapeHtml(repo.name)}</span>
                 ${privateBadge}
             </div>
-            <p class="repo-card-desc">${escapeHtml(repo.description) || "<em>Sem descrição</em>"}</p>
+            <p class="repo-card-desc">${escapeHtml(repo.description) || "<em>No description</em>"}</p>
             <div class="repo-card-meta">${lang}${stars}${forks}</div>
         </a>
     `;
@@ -177,15 +204,15 @@ function renderRepoCard(repo) {
 //  Fetch GitHub data
 // ============================================
 async function loadProfile() {
-    // Apenas o avatar é puxado da API — nome e bio ficam definidos no HTML
-    // para manteres controlo total sobre como te apresentas.
+    // Only the avatar is pulled from the API — name and bio stay defined in the
+    // HTML so you keep full control over how you present yourself.
     try {
         const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const user = await res.json();
         document.getElementById("avatar").src = user.avatar_url;
     } catch (err) {
-        console.error("Erro ao carregar avatar:", err);
+        console.error("Error loading avatar:", err);
     }
 }
 
@@ -194,7 +221,7 @@ async function loadFeaturedRepos() {
     const errorEl = document.getElementById("error");
 
     if (FEATURED_REPOS.length === 0) {
-        // Fallback: mostra os repos públicos mais recentes
+        // Fallback: show the most recently updated public repos
         try {
             const res = await fetch(
                 `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`
@@ -202,13 +229,13 @@ async function loadFeaturedRepos() {
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const repos = await res.json();
             if (repos.length === 0) {
-                grid.innerHTML = "<p>Sem repositórios públicos para mostrar.</p>";
+                grid.innerHTML = "<p>No public repositories to show.</p>";
                 return;
             }
             grid.innerHTML = repos.map(renderRepoCard).join("");
         } catch (err) {
             grid.innerHTML = "";
-            errorEl.textContent = "Não foi possível carregar os repositórios.";
+            errorEl.textContent = "Couldn't load repositories.";
             errorEl.hidden = false;
         }
         return;
@@ -226,11 +253,11 @@ async function loadFeaturedRepos() {
             })
         );
         const valid = results.filter(Boolean);
-        if (valid.length === 0) throw new Error("Nenhum repo encontrado");
+        if (valid.length === 0) throw new Error("No repos found");
         grid.innerHTML = valid.map(renderRepoCard).join("");
     } catch (err) {
         grid.innerHTML = "";
-        errorEl.textContent = "Não foi possível carregar os repositórios. Verifica os nomes em script.js.";
+        errorEl.textContent = "Couldn't load repositories. Check the names in script.js.";
         errorEl.hidden = false;
     }
 }
